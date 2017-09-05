@@ -1,3 +1,0 @@
-- name: test-apim
-  service: http_test
-  command: ./http.sh
