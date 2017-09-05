@@ -13,9 +13,12 @@ RUN wget -P /opt https://s3-us-west-2.amazonaws.com/wso2-stratos/wso2am-${APIM_V
     apt-get install -y vim && \
     apt-get clean && \
     unzip /opt/wso2am-${APIM_VERSION}.zip -d /opt && \
-    rm /opt/wso2am-${APIM_VERSION}.zip && \
-    cd /opt/wso2am-${APIM_VERSION}/repository/deployment/server/jaggeryapps && \
-    git remote add origin ssh://git@bitbucket.org/blxwso2/jaggeryapps.git
+    rm /opt/wso2am-${APIM_VERSION}.zip
+    
+COPY ./admin /opt/wso2am-${APIM_VERSION}/repository/deployment/server/jaggeryapps
+COPY ./portal /opt/wso2am-${APIM_VERSION}/repository/deployment/server/jaggeryapps
+COPY ./publisher /opt/wso2am-${APIM_VERSION}/repository/deployment/server/jaggeryapps
+COPY ./store /opt/wso2am-${APIM_VERSION}/repository/deployment/server/jaggeryapps
 
 EXPOSE 9443 9763 8243 8280 10397 7711
 WORKDIR /opt/wso2am-${APIM_VERSION}
